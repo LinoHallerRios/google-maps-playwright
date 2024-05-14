@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build project
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - run: dotnet build
+    - name: Install browsers
+      run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+    - name: Run tests
+      run: xvfb-run dotnet test TestPlaywright.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=cobertura
+    - name: Generate coverage
+      uses: action-badges/cobertura-coverage-xml-badges@0.3.1
+      with:
+        file-name: coverage.svg
+        badge-branch: badges
+        github-token: '${{ secrets.MAPS_CI }}'
+        coverage-file-name: /home/runner/work/google-maps-playwright/google-maps-playwright/coverage.cobertura.xml
