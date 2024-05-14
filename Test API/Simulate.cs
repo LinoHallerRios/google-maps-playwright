@@ -16,4 +16,10 @@ public static class Simulate
             $"https://www.google.com/maps/@{where.Latitude.ToString().Replace(',', '.')}," +
             $"{where.Longitude.ToString().Replace(',', '.')},14.5z?entry=ttu");
     }
+    
+    public static ILocator AcceptCookiesButton(this IPage page)
+        => page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { NameString = "Accept All" });
+    
+    public static async Task AcceptCookies(this IPage page)
+        => await page.AcceptCookiesButton().ClickAsync();
 }
