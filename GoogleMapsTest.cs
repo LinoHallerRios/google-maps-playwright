@@ -61,14 +61,7 @@ public class Tests : PlaywrightTest
 
         await Map.SearchFor(Locations.Alexanderplatz);
 
-        await Expect(Map.GetByRole(AriaRole.Heading,
-                new PageGetByRoleOptions { NameString = Locations.Alexanderplatz.Name }))
-            .ToBeVisibleAsync();
-
-        await Expect(Map.GetByRole(AriaRole.Button,
-            new()
-            {
-                NameString = Locations.Alexanderplatz.Description
-            })).ToBeVisibleAsync();
+        await Expect(Map.WithSidebarTitleFrom(Locations.Alexanderplatz)).ToBeVisibleAsync();
+        await Expect(await Map.WithSidebarDescriptionFrom(Locations.Alexanderplatz)).ToBeVisibleAsync();
     }
 }
