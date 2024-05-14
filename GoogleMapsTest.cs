@@ -33,7 +33,8 @@ public class Tests : PlaywrightTest
         
         await page.GotoAsync("https://www.google.com/maps/@52.5191918,13.4166975,14.5z?entry=ttu");
 
-        await page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { NameString = "Accept All" }).ClickAsync();
+        if(await page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { NameString = "Accept All" }).IsVisibleAsync())
+            await page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { NameString = "Accept All" }).ClickAsync();
 
         await page.GetByLabel("Search Google Maps").FillAsync("Alexanderplatz");
         await page.GetByRole(AriaRole.Gridcell, new PageGetByRoleOptions { NameString = "Alexanderplatz Berlin, Germany" }).ClickAsync();
