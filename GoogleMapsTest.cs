@@ -1,3 +1,4 @@
+using GoogleMapsPlaywright.Test_API;
 using Microsoft.Playwright;
 
 namespace GoogleMapsPlaywright;
@@ -6,15 +7,22 @@ namespace GoogleMapsPlaywright;
 [TestFixture]
 public class Tests : PlaywrightTest
 {
-    [Test]
-    public async Task SearchForLocationInSearchBar()
+    string GoogleMaps => "https://www.google.com/maps/";
+
+    protected IPage Map;
+
+    IBrowserContext context;
+    IBrowser browser;
+
+    [SetUp]
+    public async Task Setup()
     {
-        var browser = await Playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+        browser = await Playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
         {
             Headless = false
         });
-        
-        var context = await browser.NewContextAsync(
+
+        context = await browser.NewContextAsync(
             new BrowserNewContextOptions()
             {
                 ViewportSize = new ViewportSize() { Width = 1280, Height = 720 },
@@ -28,25 +36,39 @@ public class Tests : PlaywrightTest
                 },
                 IgnoreHTTPSErrors = true
             });
-        
-        var page = await context.NewPageAsync();
-        
-        await page.GotoAsync("https://www.google.com/maps/@52.5191918,13.4166975,14.5z?entry=ttu");
 
-        if(await page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { NameString = "Accept All" }).IsVisibleAsync())
-            await page.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { NameString = "Accept All" }).ClickAsync();
+        Map = await context.NewPageAsync();
 
-        await page.GetByLabel("Search Google Maps").FillAsync("Alexanderplatz");
-        await page.GetByRole(AriaRole.Gridcell, new PageGetByRoleOptions { NameString = "Alexanderplatz Berlin, Germany" }).ClickAsync();
+        await Map.GotoAsync(GoogleMaps);
 
-        await Expect(page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { NameString = "Alexanderplatz" }))
+        if (await Map.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { NameString = "Accept All" })
+                .IsVisibleAsync())
+            await Map.GetByRole(AriaRole.Button, new PageGetByRoleOptions() { NameString = "Accept All" }).ClickAsync();
+
+        await Expect(Map).ToHaveTitleAsync(new Regex("Google Maps"));
+    }
+
+    [TearDown]
+    public async Task Close()
+    {
+        await context.CloseAsync();
+    }
+
+    [Test]
+    public async Task SearchForLocationInSearchBar()
+    {
+        await Map.NavigateTo(Locations.Berlin);
+
+        await Map.SearchFor(Locations.Alexanderplatz);
+
+        await Expect(Map.GetByRole(AriaRole.Heading,
+                new PageGetByRoleOptions { NameString = Locations.Alexanderplatz.Name }))
             .ToBeVisibleAsync();
 
-        await Expect(page.GetByRole(AriaRole.Button,
+        await Expect(Map.GetByRole(AriaRole.Button,
             new()
             {
-                NameString =
-                    "Historic meeting and market place rebuilt post-war with modern buildings and 365-meter TV tower."
+                NameString = Locations.Alexanderplatz.Description
             })).ToBeVisibleAsync();
     }
 }
