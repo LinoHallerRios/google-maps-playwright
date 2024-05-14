@@ -1,20 +1,27 @@
 using GoogleMapsPlaywright.Test_API;
 using Microsoft.Playwright;
+using static GoogleMapsPlaywright.Test_API.Locations;
 
 namespace GoogleMapsPlaywright;
 
-[Parallelizable(ParallelScope.Self)]
-[TestFixture]
 public class Tests : TestFixture
 {
-    [Test]
-    public async Task SearchForLocationInSearchBar()
+    public static IEnumerable<TestCaseData> TestPlaces()
     {
-        await Map.NavigateTo(Locations.Berlin);
+        yield return new TestCaseData(Berlin, Alexanderplatz);
+        yield return new TestCaseData(Berlin, BrandenburgGate);
+        yield return new TestCaseData(Berlin, Fernsehturm);
+    }
+    
+    [Test]
+    [TestCaseSource(nameof(TestPlaces))]
+    public async Task SearchForPlaceAndHaveTitleOnSidebar(Geolocation city, Place place)
+    {
+        await Map.NavigateTo(city);
 
-        await Map.SearchFor(Locations.Alexanderplatz);
+        await Map.SearchFor(place);
 
-        await Expect(Map.WithSidebarTitleFrom(Locations.Alexanderplatz)).ToBeVisibleAsync();
-        await Expect(await Map.WithSidebarDescriptionFrom(Locations.Alexanderplatz)).ToBeVisibleAsync();
+        await Expect(Map.WithSidebarTitleFrom(place)).ToBeVisibleAsync();
+        await Expect(await Map.WithSidebarDescriptionFrom(place)).ToBeVisibleAsync();
     }
 }

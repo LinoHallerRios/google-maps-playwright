@@ -3,7 +3,7 @@ using static GoogleMapsPlaywright.Test_API.Locations;
 
 namespace GoogleMapsPlaywright.Test_API;
 
-[Parallelizable(ParallelScope.Children)]
+[Parallelizable(ParallelScope.Self)]
 public class TestFixture : PlaywrightTest
 {
     string GoogleMaps => "https://www.google.com/maps/";
@@ -19,12 +19,6 @@ public class TestFixture : PlaywrightTest
         browser = await LaunchChromium();
 
         await LoadGoogleMapsPageFrom(Berlin);
-    }
-
-    [TearDown]
-    public async Task Close()
-    {
-        await context.CloseAsync();
     }
 
     async Task<IBrowser> LaunchChromium()
