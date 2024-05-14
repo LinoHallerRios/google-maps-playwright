@@ -17,7 +17,7 @@ public static class Locations
         Search = "Alexanderplatz Berlin, Germany"
     };
     
-    public static Place Fernsehturm = new()
+    public static Place TvTower = new()
     {
         Name = "Berliner Fernsehturm",
         Description = "368m-tall tower, opened in 1969, with a viewing gallery at 203m and revolving restaurant at 207m.",
@@ -29,6 +29,13 @@ public static class Locations
         Name = "Brandenburg Gate",
         Description = "Restored 18th-century gate & landmark with 12 Doric columns topped by a classical goddess statue.",
         Search = "Brandenburg Gate Pariser Platz, Berlin, Germany"
+    };
+    
+    public static Place EastSideGallery = new()
+    {
+        Name = "East Side Gallery",
+        Description = "Conserved graffiti project by 118 artists covering part of the Berlin Wall & celebrating its demise.",
+        Search = "East Side Gallery Mühlenstraße, Berlin, Germany"
     };
 }
 

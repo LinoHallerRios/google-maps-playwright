@@ -10,18 +10,21 @@ public class Tests : TestFixture
     {
         yield return new TestCaseData(Berlin, Alexanderplatz);
         yield return new TestCaseData(Berlin, BrandenburgGate);
-        yield return new TestCaseData(Berlin, Fernsehturm);
+        yield return new TestCaseData(Berlin, TvTower);
+        yield return new TestCaseData(Berlin, EastSideGallery);
     }
     
     [Test]
     [TestCaseSource(nameof(TestPlaces))]
     public async Task SearchForPlaceAndHaveTitleOnSidebar(Geolocation city, Place place)
     {
-        await Map.NavigateTo(city);
+        var map = await LoadGoogleMapsPage();
+        
+        await map.NavigateTo(city);
 
-        await Map.SearchFor(place);
+        await map.SearchFor(place);
 
-        await Expect(Map.WithSidebarTitleFrom(place)).ToBeVisibleAsync();
-        await Expect(await Map.WithSidebarDescriptionFrom(place)).ToBeVisibleAsync();
+        await Expect(map.WithSidebarTitleFrom(place)).ToBeVisibleAsync();
+        await Expect(await map.WithSidebarDescriptionFrom(place)).ToBeVisibleAsync();
     }
 }

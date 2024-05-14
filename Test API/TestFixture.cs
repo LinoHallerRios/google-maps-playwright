@@ -3,14 +3,14 @@ using static GoogleMapsPlaywright.Test_API.Locations;
 
 namespace GoogleMapsPlaywright.Test_API;
 
-[Parallelizable(ParallelScope.Self)]
+[Parallelizable(ParallelScope.Children)]
 public class TestFixture : PlaywrightTest
 {
     string GoogleMaps => "https://www.google.com/maps/";
 
     protected IPage Map;
 
-    IBrowserContext context;
+    protected IBrowserContext context;
     IBrowser browser;
 
     [SetUp]
@@ -18,7 +18,7 @@ public class TestFixture : PlaywrightTest
     {
         browser = await LaunchChromium();
 
-        await LoadGoogleMapsPageFrom(Berlin);
+        await CreateBrowserFrom(Berlin);
     }
 
     async Task<IBrowser> LaunchChromium()
@@ -30,7 +30,7 @@ public class TestFixture : PlaywrightTest
         });
     }
 
-    async Task LoadGoogleMapsPageFrom(Geolocation where)
+    async Task CreateBrowserFrom(Geolocation where)
     {
         context = await browser.NewContextAsync(
             new BrowserNewContextOptions()
@@ -42,8 +42,11 @@ public class TestFixture : PlaywrightTest
                 Geolocation = where,
                 IgnoreHTTPSErrors = true
             });
+    }
 
-        Map = await context.NewPageAsync();
+    protected async Task<IPage> LoadGoogleMapsPage()
+    {
+        var Map = await context.NewPageAsync();
 
         await Map.GotoAsync(GoogleMaps);
 
@@ -51,5 +54,7 @@ public class TestFixture : PlaywrightTest
             await Map.AcceptCookies();
 
         await Expect(Map).ToHaveTitleAsync(new Regex("Google Maps"));
+
+        return Map;
     }
 }
