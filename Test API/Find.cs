@@ -2,9 +2,9 @@
 
 namespace GoogleMapsPlaywright.Test_API;
 
-public static class Assert
+public static class Find
 {
-    public async static Task<ILocator> WithSidebarDescriptionFrom(this IPage page, Place place)
+    public static ILocator WithSidebarDescriptionFrom(this IPage page, Place place)
     {
         return page.GetByRole(AriaRole.Button, new() { NameString = place.Description });
     }

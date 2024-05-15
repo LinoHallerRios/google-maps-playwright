@@ -25,6 +25,6 @@ public class Tests : TestFixture
         await map.SearchFor(place);
 
         await Expect(map.WithSidebarTitleFrom(place)).ToBeVisibleAsync();
-        await Expect(await map.WithSidebarDescriptionFrom(place)).ToBeVisibleAsync();
+        await Expect(map.WithSidebarDescriptionFrom(place)).ToBeVisibleAsync();
     }
 }

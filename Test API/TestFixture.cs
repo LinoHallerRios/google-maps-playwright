@@ -7,10 +7,8 @@ namespace GoogleMapsPlaywright.Test_API;
 public class TestFixture : PlaywrightTest
 {
     string GoogleMaps => "https://www.google.com/maps/";
-
-    protected IPage Map;
-
-    protected IBrowserContext context;
+    
+    IBrowserContext context;
     IBrowser browser;
 
     [SetUp]
