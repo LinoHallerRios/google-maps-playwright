@@ -17,7 +17,7 @@ public static class Simulate
             $"{where.Longitude.ToString().Replace(',', '.')},14.5z?entry=ttu");
     }
     
-    public static async Task<string> CopyAddress(this IPage page)
+    public static async Task<string> CopiedAddress(this IPage page)
     {
         await page.GetByRole(AriaRole.Button, new () { NameString = "Copy address" }).ClickAsync();
         return await page.EvaluateAsync<string>("navigator.clipboard.readText()");

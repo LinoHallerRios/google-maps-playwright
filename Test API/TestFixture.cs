@@ -8,7 +8,7 @@ public class TestFixture : BrowserTest
 {
     string GoogleMaps => "https://www.google.com/maps/";
     
-    protected async Task<IPage> LoadGoogleMapsPage(Geolocation from)
+    protected async Task<IPage> LoadGoogleMapsPageIn(Geolocation from)
     {
         var context = await Browser.NewContextAsync(new BrowserNewContextOptions()
         {
