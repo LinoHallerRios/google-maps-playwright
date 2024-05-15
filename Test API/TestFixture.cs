@@ -10,15 +10,16 @@ public class TestFixture : BrowserTest
     
     protected async Task<IPage> LoadGoogleMapsPage()
     {
-        var Map = await Browser.NewPageAsync(new BrowserNewPageOptions()
+        var context = await Browser.NewContextAsync(new BrowserNewContextOptions()
         {
-            ViewportSize = new ViewportSize() { Width = 1280, Height = 720 },
             Locale = "en-UK",
             TimezoneId = "Europe/Berlin",
             Permissions = new[] { "geolocation" },
             Geolocation = Berlin,
             IgnoreHTTPSErrors = true
         });
+        
+        var Map = await context.NewPageAsync();
 
         await Map.GotoAsync(GoogleMaps);
 
