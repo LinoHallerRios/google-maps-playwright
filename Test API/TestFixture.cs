@@ -1,9 +1,9 @@
 ﻿using Microsoft.Playwright;
-using static GoogleMapsPlaywright.Test_API.Locations;
+using static GoogleMapsPlaywright.Test_API.Data;
 
 namespace GoogleMapsPlaywright.Test_API;
 
-[Parallelizable(ParallelScope.Children)]
+[Parallelizable(ParallelScope.Fixtures)]
 public class TestFixture : BrowserTest
 {
     string GoogleMaps => "https://www.google.com/maps/";
@@ -14,7 +14,7 @@ public class TestFixture : BrowserTest
         {
             Locale = "en-UK",
             TimezoneId = "Europe/Berlin",
-            Permissions = new[] { "geolocation", "clipboard-read" },
+            Permissions = new[] { "geolocation" },
             Geolocation = from,
             IgnoreHTTPSErrors = true
         });

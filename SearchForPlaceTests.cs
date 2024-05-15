@@ -1,6 +1,6 @@
 using GoogleMapsPlaywright.Test_API;
 using Microsoft.Playwright;
-using static GoogleMapsPlaywright.Test_API.Locations;
+using static GoogleMapsPlaywright.Test_API.Data;
 
 namespace GoogleMapsPlaywright;
 
