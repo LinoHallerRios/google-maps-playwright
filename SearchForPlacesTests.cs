@@ -4,7 +4,7 @@ using static GoogleMapsPlaywright.Test_API.Locations;
 
 namespace GoogleMapsPlaywright;
 
-public class Tests : TestFixture
+public class SearchForPlacesTests : TestFixture
 {
     public static IEnumerable<TestCaseData> TestPlaces()
     {
@@ -18,14 +18,12 @@ public class Tests : TestFixture
     [TestCaseSource(nameof(TestPlaces))]
     public async Task SearchForPlaceAndHaveTitleOnSidebar(Geolocation city, Place place)
     {
-        var map = await LoadGoogleMapsPage();
-        
-        await map.NavigateTo(city);
+        var map = await LoadGoogleMapsPage(city);
 
         await map.SearchFor(place);
 
-        await Expect(map.WithSidebarTitleFrom(place)).ToBeVisibleAsync(new LocatorAssertionsToBeVisibleOptions() {Timeout = 10000});
-        await Expect(map.WithSidebarDescriptionFrom(place)).ToBeVisibleAsync(new LocatorAssertionsToBeVisibleOptions() {Timeout = 10000});
+        await Expect(map.WithSidebarTitleFrom(place)).ToBeVisibleAsync();
+        await Expect(map.WithSidebarDescriptionFrom(place)).ToBeVisibleAsync();
         
         await map.CloseAsync();
     }
