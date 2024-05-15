@@ -14,7 +14,6 @@ public class TestFixture : BrowserTest
         {
             Locale = "en-UK",
             TimezoneId = "Europe/Berlin",
-            Permissions = new[] { "geolocation" },
             Geolocation = from,
             IgnoreHTTPSErrors = true
         });

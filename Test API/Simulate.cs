@@ -17,10 +17,19 @@ public static class Simulate
             $"{where.Longitude.ToString().Replace(',', '.')},14.5z?entry=ttu");
     }
     
-    public static async Task<string> CopiedAddress(this IPage page)
+    public static async Task<IPage> GetWalkingDirectionsFrom(this IPage page, Place from)
     {
-        await page.GetByRole(AriaRole.Button, new () { NameString = "Copy address" }).ClickAsync();
-        return await page.EvaluateAsync<string>("navigator.clipboard.readText()");
+        await SearchFor(page, from);
+        await page.GetByRole(AriaRole.Button, new () { NameRegex = new Regex("Directions to " + from.Name) }).ClickAsync();
+        await page.GetByRole(AriaRole.Radio, new () { NameString = "Walking" }).ClickAsync();
+        return page;
+    }
+    
+    public static async Task To(this IPage page, Place to)
+    {
+        await Task.Delay(5000);
+        await page.GetByPlaceholder("Choose starting point, or click on the map...").FillAsync(to.Name);
+        await page.GetByRole(AriaRole.Gridcell, new PageGetByRoleOptions { NameString = to.Search }).ClickAsync();
     }
 
     public static ILocator AcceptCookiesButton(this IPage page)
