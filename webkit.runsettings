@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+    <Playwright>
+        <BrowserName>webkit</BrowserName>
+        <LaunchOptions>
+            <Headless>false</Headless>
+            <Timeout>10000</Timeout>
+        </LaunchOptions>
+    </Playwright>
+</RunSettings>

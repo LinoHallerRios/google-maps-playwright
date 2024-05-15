@@ -17,8 +17,12 @@ jobs:
     - run: dotnet build
     - name: Install browsers
       run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
-    - name: Run tests
-      run: xvfb-run dotnet test GoogleMapsPlaywright.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=cobertura
+    - name: Run Chromium tests
+      run: xvfb-run dotnet test GoogleMapsPlaywright.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=cobertura --settings=chromium.runsettings
+    - name: Run Firefox tests
+      run: xvfb-run dotnet test --settings=firefox.runsettings
+    - name: Run WebKit tests
+      run: xvfb-run dotnet test --settings=webkit.runsettings
     - name: Generate coverage
       uses: action-badges/cobertura-coverage-xml-badges@0.3.1
       with:
