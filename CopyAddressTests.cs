@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using GoogleMapsPlaywright.Test_API;
+﻿using GoogleMapsPlaywright.Test_API;
 using static GoogleMapsPlaywright.Test_API.Locations;
 
 namespace GoogleMapsPlaywright;
@@ -13,6 +12,6 @@ public class CopyAddressTests : TestFixture
 
         await map.SearchFor(Markveien53Street);
         
-        (await map.CopiedAddress()).Should().Be(Markveien53Street.Address);
+        Assert.That(Markveien53Street.Address, Is.EqualTo(await map.CopiedAddress()));
     }
 }
