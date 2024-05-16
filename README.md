@@ -43,7 +43,7 @@ Once you have the project on your local computer, open a **terminal** in the pro
 - Install the required browsers
 
   ```powershell
-  pwsh bin/Debug/net8/playwright.ps1 install --with-deps
+  pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
   ```
 Now you are ready to run the tests!
 
