@@ -13,4 +13,9 @@ public static class Find
     {
         return page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { NameString = place.Name});
     }
+
+    public static ILocator ToHaveTravelDistance(this IPage page, string expectedDistance)
+    {
+        return page.GetByRole(AriaRole.Link, new() { NameRegex = new Regex(expectedDistance) });
+    }
 }

@@ -9,7 +9,7 @@ public class WalkFromOnePlaceToAnotherTests : TestFixture
     public static IEnumerable<TestCaseData> TestDirections()
     {
         yield return new TestCaseData(Alexanderplatz, BrandenburgGate, "Walking 34 min 2.5 km");
-        yield return new TestCaseData(BrandenburgGate, Alexanderplatz, "Walking 34 min 2.5 km");
+        yield return new TestCaseData(EastSideGallery, TvTower, "Walking 35 min 2.5 km");
     }
     
     [Test]
@@ -20,8 +20,7 @@ public class WalkFromOnePlaceToAnotherTests : TestFixture
 
         await (await map.GetWalkingDirectionsFrom(startingLocation)).To(destination);
         
-        await Expect(map.GetByRole(AriaRole.Link, new() { NameRegex = new Regex(expectedDistance) }))
-            .ToBeVisibleAsync();
+        await Expect(map.ToHaveTravelDistance(expectedDistance)).ToBeVisibleAsync();
         
         await map.CloseAsync();
     }
