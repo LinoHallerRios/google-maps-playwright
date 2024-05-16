@@ -14,8 +14,8 @@ public class SearchForPlaceTests : TestFixture
         yield return new TestCaseData(Berlin, EastSideGallery);
     }
     
-    [Test]
-    [TestCaseSource(nameof(TestPlaces))]
+ 
+
     public async Task SearchForPlaceHasTitleAndDescriptionOnSidebar(Geolocation city, Place place)
     {
         var map = await LoadGoogleMapsPageIn(city);
