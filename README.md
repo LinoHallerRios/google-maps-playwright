@@ -22,6 +22,7 @@ In order to run the project in your local machine you will need the following:
 ```powershell
 winget install --id Microsoft.Powershell --source winget
 ```
+_If you do not have winget you can donwload powershell [here](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.4#installation-via-direct-download)_
 #### MacOS
 ```bash
 brew install powershell/tap/powershell
