@@ -38,6 +38,13 @@ public static class Data
         Search = "East Side Gallery Mühlenstraße, Berlin, Germany"
     };
     
+    public static Place KleineMarkusstraße = new()
+    {
+        Name = "Kleine Markusstraße 1",
+        Description = "Address, Kleine Markusstraße 1, 10243 Berlin, Germany",
+        Search = "Kleine Markusstraße1 Berlin, Germany"
+    };
+    
 }
 
 public struct Place

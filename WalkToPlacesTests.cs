@@ -1,10 +1,9 @@
 ﻿using GoogleMapsPlaywright.Test_API;
-using Microsoft.Playwright;
 using static GoogleMapsPlaywright.Test_API.Data;
 
 namespace GoogleMapsPlaywright;
 
-public class WalkFromOnePlaceToAnotherTests : TestFixture
+public class WalkToPlacesTests : TestFixture
 {
     public static IEnumerable<TestCaseData> TestDirections()
     {
