@@ -1,7 +1,7 @@
-﻿using GoogleMapsPlaywright.Test_API;
-using static GoogleMapsPlaywright.Test_API.Data;
+﻿using GoogleMapsPlaywright.Tests.API;
+using static GoogleMapsPlaywright.Tests.API.Data;
 
-namespace GoogleMapsPlaywright;
+namespace GoogleMapsPlaywright.Tests;
 
 public class WalkToPlacesTests : TestFixture
 {

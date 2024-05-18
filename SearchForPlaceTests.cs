@@ -1,8 +1,8 @@
-using GoogleMapsPlaywright.Test_API;
+using GoogleMapsPlaywright.Tests.API;
+using static GoogleMapsPlaywright.Tests.API.Data; 
 using Microsoft.Playwright;
-using static GoogleMapsPlaywright.Test_API.Data;
 
-namespace GoogleMapsPlaywright;
+namespace GoogleMapsPlaywright.Tests;
 
 public class SearchForPlaceTests : TestFixture
 {

@@ -1,7 +1,8 @@
 ﻿using Microsoft.Playwright;
-using static GoogleMapsPlaywright.Test_API.Data;
+using static GoogleMapsPlaywright.Tests.API.Simulate;
+using static GoogleMapsPlaywright.Tests.API.Find;
 
-namespace GoogleMapsPlaywright.Test_API;
+namespace GoogleMapsPlaywright.Tests;
 
 [Parallelizable(ParallelScope.Fixtures)]
 public class TestFixture : BrowserTest

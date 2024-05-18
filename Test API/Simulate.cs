@@ -1,6 +1,6 @@
 ﻿using Microsoft.Playwright;
 
-namespace GoogleMapsPlaywright.Test_API;
+namespace GoogleMapsPlaywright.Tests.API;
 
 public static class Simulate
 {
