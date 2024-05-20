@@ -3,7 +3,7 @@
 
 # Google Maps Playwright Tests
 
-This project is as a playground for me to learn how to use **Playwright** with C#. \
+This project is a playground for me to learn how to use **Playwright** with C#. \
 I am currently using the **Google Maps** page for this purpose.
 
 ## Set Up
@@ -22,7 +22,7 @@ In order to run the project in your local machine you will need the following:
 ```powershell
 winget install --id Microsoft.Powershell --source winget
 ```
-_If you do not have winget you can donwload powershell [here](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.4#installation-via-direct-download)_
+_If you do not have winget, you can download PowerShell [here](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.4#installation-via-direct-download)_
 #### MacOS
 ```bash
 brew install powershell/tap/powershell
@@ -30,7 +30,7 @@ brew install powershell/tap/powershell
 
 ### Project
 
-Donwload the project or clone the repository using [Git](https://git-scm.com/downloads).
+Download the project or clone the repository using [Git](https://git-scm.com/downloads).
 
 Once you have the project on your local computer, open a **terminal** in the project **root**:
 - Build the project
@@ -39,7 +39,7 @@ Once you have the project on your local computer, open a **terminal** in the pro
   dotnet build
   ```
 
-   _This will generate the a new `bin` folder with the build._
+   _This will generate a new `bin` folder with the build._
 
 - Install the required browsers
 
@@ -49,7 +49,7 @@ Once you have the project on your local computer, open a **terminal** in the pro
 Now you are ready to run the tests!
 
 ## Usage
- You can run the tests in three different browsers by using the following commads:
+ You can run the tests in three different browsers by using the following commands:
 ```powershell
 dotnet test --settings=chromium.runsettings
 ```
@@ -69,7 +69,7 @@ You will find a `coverage.cobertura.xml` file with the generated report.
 
 ## Configuration
 
-The tests are running in Headful mode, this means that browsers will open when you run the tests.
+The tests are running in headful mode, which means that browsers will open when you run the tests.
 
 If you want to run them in headless mode you can edit the `.runsettings` file for each browser.
 ```xml
