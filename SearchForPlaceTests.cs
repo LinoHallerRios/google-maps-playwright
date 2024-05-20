@@ -28,5 +28,18 @@ public class SearchForPlaceTests : TestFixture
         
         await map.CloseAsync();
     }
-    
+
+    [Test]
+    public async Task SearchForPlaceWithWrongData()
+    {
+        var map = await LoadGoogleMapsPageFrom(Berlin);
+
+        await map.SearchFor(Alexanderplatz);
+
+        await Expect(map.WithSidebarTitleFrom(BrandenburgGate)).Not.ToBeVisibleAsync();
+        await Expect(map.WithSidebarDescriptionFrom(TvTower)).Not.ToBeVisibleAsync();
+
+        await map.CloseAsync();
+    }
+
 }
