@@ -10,12 +10,6 @@ public static class Data
         Longitude = 13.4166975f,
     };
 
-    public static Geolocation Malaga => new()
-    {
-        Latitude = 36.7164483f,
-        Longitude = -4.4248515f,
-    };
-
     public static Geolocation Bucarest => new()
     {
         Latitude = 44.4242239f,
@@ -48,13 +42,6 @@ public static class Data
         Name = "East Side Gallery",
         Description = "Conserved graffiti project by 118 artists covering part of the Berlin Wall & celebrating its demise.",
         SearchResult = "East Side Gallery Mühlenstraße, Berlin, Germany"
-    };
-
-    public static Place LariosStreet = new ()
-    {
-        Name = "C. Marqués de Larios, 4",
-        Description = "Address, C. Marqués de Larios, 4, Distrito Centro, 29005 Málaga",
-        SearchResult = "C. Marqués de Larios, 4 Málaga"
     };
 
     public static Place BatisteiStreet = new ()
