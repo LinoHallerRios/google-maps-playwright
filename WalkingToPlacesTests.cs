@@ -5,14 +5,14 @@ namespace GoogleMapsPlaywright.Tests;
 
 public class WalkingToPlacesTests : TestFixture
 {
-    public static IEnumerable<TestCaseData> WalkingDurationAndDistanceData()
+    public static IEnumerable<TestCaseData> TestDirections()
     {
         yield return new TestCaseData(Alexanderplatz, BrandenburgGate, "Walking 34 min 2.5 km");
         yield return new TestCaseData(EastSideGallery, TvTower, "Walking 35 min 2.5 km");
     }
     
     [Test]
-    [TestCaseSource(nameof(WalkingDurationAndDistanceData))]
+    [TestCaseSource(nameof(TestDirections))]
     public async Task WalkFromOnePlaceToAnother(Place startingLocation, Place destination, String expectedDistance)
     {
         var map = await LoadGoogleMapsPageFrom(Berlin);

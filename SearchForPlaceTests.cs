@@ -10,9 +10,9 @@ public class SearchForPlaceTests : TestFixture
     {
         yield return new TestCaseData(Berlin, Alexanderplatz);
         yield return new TestCaseData(Berlin, BrandenburgGate);
-        yield return new TestCaseData(Berlin, TvTower);
         yield return new TestCaseData(Berlin, EastSideGallery);
-        yield return new TestCaseData(Berlin, KleineMarkusstraße);
+        yield return new TestCaseData(Malaga, LariosStreet);
+        yield return new TestCaseData(Bucarest, BatisteiStreet);
     }
     
     [Test]

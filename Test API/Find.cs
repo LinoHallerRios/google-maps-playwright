@@ -29,5 +29,5 @@ public static class Find
         => page.GetByRole(AriaRole.Radio, new () { NameString = "Walking" });
     
     public static ILocator SearchResultThatContains(this IPage page, Place place) 
-        => page.GetByRole(AriaRole.Gridcell, new PageGetByRoleOptions { NameString = place.Search });
+        => page.GetByRole(AriaRole.Gridcell, new PageGetByRoleOptions { NameString = place.SearchResult });
 }

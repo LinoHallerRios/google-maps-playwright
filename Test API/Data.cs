@@ -10,46 +10,64 @@ public static class Data
         Longitude = 13.4166975f,
     };
 
+    public static Geolocation Malaga => new()
+    {
+        Latitude = 36.7164483f,
+        Longitude = -4.4248515f,
+    };
+
+    public static Geolocation Bucarest => new()
+    {
+        Latitude = 44.4242239f,
+        Longitude = 26.1025165f,
+    };
+
     public static Place Alexanderplatz = new()
     {
         Name = "Alexanderplatz",
         Description = "Historic meeting and market place rebuilt post-war with modern buildings and 365-meter TV tower.",
-        Search = "Alexanderplatz Berlin, Germany"
+        SearchResult = "Alexanderplatz Berlin, Germany"
     };
     
     public static Place TvTower = new()
     {
         Name = "Berliner Fernsehturm",
         Description = "368m-tall tower, opened in 1969, with a viewing gallery at 203m and revolving restaurant at 207m.",
-        Search = "Berliner Fernsehturm 1 Panoramastraße, Berlin, Germany"
+        SearchResult = "Berliner Fernsehturm 1 Panoramastraße, Berlin, Germany"
     };
     
     public static Place BrandenburgGate = new()
     {
         Name = "Brandenburg Gate",
         Description = "Restored 18th-century gate & landmark with 12 Doric columns topped by a classical goddess statue.",
-        Search = "Brandenburg Gate Pariser Platz, Berlin, Germany"
+        SearchResult = "Brandenburg Gate Pariser Platz, Berlin, Germany"
     };
     
     public static Place EastSideGallery = new()
     {
         Name = "East Side Gallery",
         Description = "Conserved graffiti project by 118 artists covering part of the Berlin Wall & celebrating its demise.",
-        Search = "East Side Gallery Mühlenstraße, Berlin, Germany"
+        SearchResult = "East Side Gallery Mühlenstraße, Berlin, Germany"
     };
-    
-    public static Place KleineMarkusstraße = new()
+
+    public static Place LariosStreet = new ()
     {
-        Name = "Kleine Markusstraße 1",
-        Description = "Address, Kleine Markusstraße 1, 10243 Berlin, Germany",
-        Search = "Kleine Markusstraße1 Berlin, Germany"
+        Name = "C. Marqués de Larios, 4",
+        Description = "Address, C. Marqués de Larios, 4, Distrito Centro, 29005 Málaga",
+        SearchResult = "C. Marqués de Larios, 4 Málaga"
     };
-    
+
+    public static Place BatisteiStreet = new ()
+    {
+        Name = "Str. Batiștei 12",
+        Description = "Address, Str. Batiștei 12, București 030167, Romania",
+        SearchResult = "Str. Batiștei12 Bucharest, Romania"
+    };
 }
 
 public struct Place
 {
     public string Name { get; set; }
     public string Description { get; set; }
-    public string Search { get; set; }
+    public string SearchResult { get; set; }
 }
