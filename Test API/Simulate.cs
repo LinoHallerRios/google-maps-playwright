@@ -20,10 +20,10 @@ public static class Simulate
         await page.SearchBar().FillAsync(place.Name);
     }
     
-    public static async Task<IPage> GetWalkingDirectionsFrom(this IPage page, Place from)
+    public static async Task<IPage> GetWalkingDirectionsFrom(this IPage page, Place place)
     {
-        await SearchFor(page, from);
-        await page.ActivateDirectionsFrom(from);
+        await page.SearchFor(place);
+        await page.ActivateDirectionsFrom(place);
         await page.SelectWalking();
         
         return page;

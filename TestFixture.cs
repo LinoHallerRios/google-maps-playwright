@@ -7,29 +7,34 @@ namespace GoogleMapsPlaywright.Tests;
 [Parallelizable(ParallelScope.Fixtures)]
 public class TestFixture : BrowserTest
 {
-    string GoogleMaps => "https://www.google.com/maps/";
+    string GoogleMapsURL => "https://www.google.com/maps/";
+    string GoogleMapsWebTitle => "Google Maps";
     
-    protected async Task<IPage> LoadGoogleMapsPageIn(Geolocation from)
+    protected async Task<IPage> LoadGoogleMapsPageFrom(Geolocation place)
     {
-        var context = await Browser.NewContextAsync(new BrowserNewContextOptions()
+        var context = await Browser.NewContextAsync(
+        new BrowserNewContextOptions()
         {
             Locale = "en-UK",
             TimezoneId = "Europe/Berlin",
-            Geolocation = from,
+            Geolocation = place,
             IgnoreHTTPSErrors = true
         });
-        
-        var Map = await context.NewPageAsync();
 
-        await Map.GotoAsync(GoogleMaps);
+        var map = await context.NewPageAsync();
 
-        if (await Map.AcceptCookiesButton().IsVisibleAsync())
-            await Map.AcceptCookies();
+        await map.GotoAsync(GoogleMapsURL);
 
-        await Expect(Map).ToHaveTitleAsync(new Regex("Google Maps"));
-        
-        await Map.NavigateTo(from);
+        if (await NeedsToAcceptCookies(map))
+            await map.AcceptCookies();
 
-        return Map;
+        await Expect(map).ToHaveTitleAsync(new Regex(GoogleMapsWebTitle));
+
+        await map.NavigateTo(place);
+
+        return map;
     }
+
+    private static async Task<bool> NeedsToAcceptCookies(IPage map)
+        => await map.AcceptCookiesButton().IsVisibleAsync();
 }

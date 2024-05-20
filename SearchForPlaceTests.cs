@@ -19,7 +19,7 @@ public class SearchForPlaceTests : TestFixture
     [TestCaseSource(nameof(TestPlaces))]
     public async Task SearchForPlaceHasTitleAndDescriptionOnSidebar(Geolocation city, Place place)
     {
-        var map = await LoadGoogleMapsPageIn(city);
+        var map = await LoadGoogleMapsPageFrom(city);
 
         await map.SearchFor(place);
 
